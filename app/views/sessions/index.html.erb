@@ -1,0 +1,12 @@
+<%= form_for :users, :html => { class: 'form-signin' }, url: sessions_path do |f| %>
+    <h1>Sign in</h1>
+    <% if flash[:errorMessage] %>
+        <p class="bg-danger"><%= flash[:errorMessage] %></p>
+    <% end %>
+    <%= f.label :Email, class: 'sr-only' %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Input email...' %>
+    <%= f.label :Password, class: 'sr-only' %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Input password...' %>
+    <%= f.submit 'Sign in', class: 'btn btn-lg btn-primary btn-block' %>
+    <p>New user? <%= link_to 'Sign up now', new_user_path %></p>
+<% end %>

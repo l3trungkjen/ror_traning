@@ -1,0 +1,28 @@
+<h2>Users</h2>
+<%= link_to 'Add new', new_entry_path %>
+<% if flash[:message] %>
+    <p class="bg-primary"><%= flash[:message] %></p>
+<% end %>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Created</th>
+        <th>Action</th>
+    </tr>
+    <% if @entries.blank? %>
+        <tr>
+            <td colspan="5">Data not found!!!</td>
+        </tr>
+    <% end %>
+    <% @entries.each do |entry| %>
+        <tr>
+            <td><%= entry.id %></td>
+            <td><%= link_to entry.title, edit_entry_path(entry) %></td>
+            <td><%= entry.body %></td>
+            <td><%= entry.created_at %></td>
+            <td><%= link_to 'Delete', entry_path(entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>

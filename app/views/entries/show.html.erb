@@ -1,0 +1,19 @@
+<h3><%= @entry.title %></h3>
+<p><%= @entry.body %></p>
+<hr>
+<h4>Add a comment</h4>
+<%= form_for([@entry, @entry.comments.build]) do |f| %>
+    <div class="form-group">
+        <%= f.hidden_field :user_id, value: @user_profile.id %>
+        <%= f.text_area :title, class: 'form-control', placeholder: 'Input comment...' %>
+    </div>
+    <%= f.submit 'Create Comment', class: 'btn btn-success' %>
+<% end %>
+<hr>
+<h4>Comments(<%= @entry.comments.count %>)</h4>
+<% @entry.comments.each do |comment| %>
+    <% comment.user_comments.each do |user_comment| %>
+        <small><%= user_comment.user.email %></small>
+    <% end %>
+    <p><%= comment.title %></p>
+<% end %>

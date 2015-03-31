@@ -1,0 +1,26 @@
+<h2>Users</h2>
+<%= link_to 'Add new', new_user_path %>
+<% if flash[:message] %>
+    <p class="bg-primary"><%= flash[:message] %></p>
+<% end %>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Created</th>
+        <th>Action</th>
+    </tr>
+    <% if @users.blank? %>
+        <tr>
+            <td colspan="4">Data not found!!!</td>
+        </tr>
+    <% end %>
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td><%= user.created_at %></td>
+            <td><%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>
