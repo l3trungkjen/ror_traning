@@ -1,5 +1,7 @@
-<% @entries.each do |entry| %>
-    <div class="bs-callout bs-callout-info">
-        <h4><%= link_to entry.title, entry_path(entry) %></h4>(<%= entry.comments.count %>) comments
-    </div>
+<% if !@entries.blank? %>
+    <% @entries.each do |entry| %>
+        <div class="bs-callout bs-callout-info">
+            <h4><%= link_to entry.title, entry_path(entry) %></h4>(<%= entry.comments.count %>) comments
+        </div>
+    <% end %>
 <% end %>
